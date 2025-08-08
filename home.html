@@ -151,6 +151,18 @@
       display: block;
     }
 
+    .success-message {
+      color: #4CAF50;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      display: none;
+      text-align: center;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
     .movie-table {
       width: 100%;
       border-collapse: collapse;
@@ -333,6 +345,7 @@
       </div>
       <button id="submit-movie" class="upload-btn" type="button" aria-label="Submit movie">Submit Movie</button>
       <p class="error-message" id="error-message" aria-live="assertive"></p>
+      <p class="success-message" id="success-message" aria-live="assertive"></p>
     </div>
 
     <div class="movie-table-container">
@@ -388,6 +401,7 @@
     const videoUploadBtn = document.getElementById("video-upload");
     const submitBtn = document.getElementById("submit-movie");
     const errorMessage = document.getElementById("error-message");
+    const successMessage = document.getElementById("success-message");
     const coverStatus = document.getElementById("cover-status");
     const videoStatus = document.getElementById("video-status");
     const movieTableBody = document.getElementById("movie-table-body");
@@ -410,6 +424,18 @@
         errorMessage.textContent = "";
         errorMessage.classList.remove("show");
       }
+    }
+
+    function showSuccess(message) {
+      if (successMessage) {
+        successMessage.textContent = message;
+        successMessage.classList.add("show");
+        setTimeout(() => {
+          successMessage.textContent = "";
+          successMessage.classList.remove("show");
+        }, 3000);
+      }
+      console.log("Success:", message);
     }
 
     // Cloudinary upload widget
@@ -473,6 +499,7 @@
           createdAt: new Date().toISOString(),
         });
         console.log("Movie uploaded successfully:", { title, genre, coverUrl, videoUrl });
+        showSuccess("Movie uploaded successfully!");
         titleInput.value = "";
         descriptionInput.value = "";
         genreSelect.value = "";
@@ -493,6 +520,7 @@
       try {
         await remove(ref(db, `movies/${movieId}`));
         console.log("Movie deleted successfully:", movieId);
+        showSuccess("Movie deleted successfully!");
       } catch (error) {
         console.error("Error deleting movie:", error);
         showError(`Failed to delete movie: ${error.message}`);
@@ -533,7 +561,7 @@
         renderMovies(movies);
         if (loading) loading.classList.add("hidden");
       }, error => {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching movies:", error.code, error.message);
         if (loading) loading.classList.add("hidden");
         showError(`Failed to load movies: ${error.message}`);
       });
