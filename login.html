@@ -303,7 +303,7 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Logging In...";
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "home.html";
+        window.location.href = "index.html";
       } catch (error) {
         console.error("Login error:", error);
         let errorMsg = "An error occurred. Please try again.";
