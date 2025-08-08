@@ -14,8 +14,6 @@
       --text-dark: #FFFFFF;
       --text-light: #B3B3B3;
       --border-dark: #2F2F2F;
-      --white-light: #F5F5F5;
-      --error-red: #FF0000;
     }
 
     body {
@@ -25,9 +23,7 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding-top: 4rem;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
       user-select: none;
@@ -43,19 +39,22 @@
     }
 
     .dashboard-container {
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 2rem;
-      width: 100%;
-      max-width: 600px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      margin-top: 6rem;
     }
 
-    .dashboard-container h1 {
+    .form-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container h2 {
       color: var(--netflix-gold);
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
@@ -63,7 +62,6 @@
     .form-group {
       margin-bottom: 1.5rem;
       text-align: left;
-      position: relative;
     }
 
     .form-group label {
@@ -79,17 +77,12 @@
     .form-group textarea {
       width: 100%;
       padding: 0.75rem;
-      background: var(--white-light);
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid var(--border-dark);
       border-radius: 0.5rem;
       color: var(--text-dark);
       font-size: 1rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
     }
 
     .form-group input:focus,
@@ -97,7 +90,6 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--netflix-gold);
-      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
     }
 
     .form-group input::placeholder,
@@ -106,10 +98,15 @@
       opacity: 0.7;
     }
 
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover {
+      background-color: var(--netflix-gold);
+      color: black;
+    }
+
     .form-group select {
       appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B3B3B3' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 0.75rem center;
@@ -118,38 +115,7 @@
     }
 
     .form-group select:hover {
-      background-color: var(--netflix-gold);
-      color: var(--text-dark);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
-    }
-
-    .form-group select:focus {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
-    }
-
-    .form-group select:invalid {
-      color: var(--text-light);
-    }
-
-    .form-group select option {
-      color: var(--text-dark);
-      background: var(--white-light);
-    }
-
-    .form-group select option[disabled] {
-      color: var(--text-light);
-    }
-
-    .form-group select option:hover {
-      background: var(--netflix-gold);
-      color: var(--text-dark);
-    }
-
-    .form-group.error input,
-    .form-group.error select,
-    .form-group.error textarea {
-      border-color: var(--error-red);
-      box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
     }
 
     .upload-btn {
@@ -161,8 +127,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      margin: 0.5rem;
-      display: inline-block;
+      margin-right: 1rem;
     }
 
     .upload-btn:hover {
@@ -174,31 +139,10 @@
       transform: translateY(0);
     }
 
-    .submit-btn {
-      background: var(--netflix-gold);
-      color: black;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      width: 100%;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .submit-btn:hover {
-      background: #d4b000;
-      transform: translateY(-1px);
-    }
-
-    .submit-btn:active {
-      transform: translateY(0);
-    }
-
     .error-message {
-      color: var(--error-red);
+      color: var(--netflix-red);
       font-size: 0.9rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       display: none;
       text-align: center;
     }
@@ -207,67 +151,145 @@
       display: block;
     }
 
-    .success-message {
+    .movie-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .movie-table th,
+    .movie-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .movie-table th {
       color: var(--netflix-gold);
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      display: none;
-      text-align: center;
+      font-weight: 600;
     }
 
-    .success-message.show {
-      display: block;
+    .movie-table td {
+      color: var(--text-light);
     }
 
-    .noscript-message {
+    .movie-table img {
+      width: 100px;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .delete-btn {
+      background: var(--netflix-red);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .delete-btn:hover {
+      background: #b20710;
+    }
+
+    .spinner-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .spinner {
+      position: relative;
+      width: 60px;
+      height: 60px;
+    }
+
+    .spinner-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 4px solid transparent;
+      border-top-color: var(--netflix-gold);
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+
+    .spinner-ring:nth-child(2) {
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+      animation-delay: -0.3s;
+      border-top-color: rgba(255, 215, 0, 0.7);
+    }
+
+    .spinner-ring:nth-child(3) {
+      width: 60%;
+      height: 60%;
+      top: 20%;
+      left: 20%;
+      animation-delay: -0.6s;
+      border-top-color: rgba(255, 215, 0, 0.4);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .spinner-text {
       color: var(--text-light);
       font-size: 1rem;
-      text-align: center;
-      padding: 1rem;
+      animation: pulse 1.5s ease-in-out infinite;
     }
 
     @media (max-width: 640px) {
       .dashboard-container {
-        padding: 1.5rem;
-        margin: 1rem;
+        padding: 1rem;
       }
 
-      .dashboard-container h1 {
-        font-size: 1.5rem;
+      .form-container {
+        padding: 1.5rem;
+      }
+
+      .form-container h2 {
+        font-size: 1.25rem;
       }
 
       .form-group input,
       .form-group select,
       .form-group textarea {
-        padding: 0.6rem;
         font-size: 0.9rem;
+        padding: 0.6rem;
       }
 
-      .upload-btn,
-      .submit-btn {
+      .upload-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
       }
 
-      .error-message,
-      .success-message {
+      .movie-table th,
+      .movie-table td {
+        padding: 0.5rem;
         font-size: 0.8rem;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      body, .upload-btn, .submit-btn, .form-group input, .form-group select, .form-group textarea {
-        transition: none;
+      .movie-table img {
+        width: 60px;
       }
     }
   </style>
 </head>
 <body>
-  <noscript>
-    <div class="noscript-message">
-      JavaScript is disabled. Please enable JavaScript to use the RAREPLAY Admin Dashboard or visit our <a href="https://help.rareplay.com" class="underline">help page</a> for more information.
-    </div>
-  </noscript>
   <nav class="navbar">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold text-[var(--netflix-gold)]">RAREPLAY Admin</h1>
@@ -276,53 +298,73 @@
       </div>
     </div>
   </nav>
-  <div class="dashboard-container" role="form" aria-labelledby="dashboard-title">
-    <h1 id="dashboard-title">Upload New Movie</h1>
-    <div class="form-group" id="title-group">
-      <label for="title">Movie Title</label>
-      <input type="text" id="title" placeholder="Enter movie title" required aria-required="true" aria-describedby="title-error" />
-      <p class="error-message" id="title-error" aria-live="assertive"></p>
+
+  <div class="dashboard-container">
+    <div class="form-container">
+      <h2>Upload New Movie</h2>
+      <div class="form-group">
+        <label for="title">Movie Title</label>
+        <input type="text" id="title" placeholder="Enter movie title" required aria-required="true" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter movie description" rows="4" required aria-required="true"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <select id="genre" required aria-required="true">
+          <option value="" disabled selected>Select a genre</option>
+          <option value="action">Action</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="horror">Horror</option>
+          <option value="sci-fi">Sci-Fi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cover-upload">Cover Image</label>
+        <button id="cover-upload" class="upload-btn" type="button" aria-label="Upload cover image">Upload Cover Image</button>
+        <p id="cover-status" class="text-[var(--text-light)] mt-2"></p>
+      </div>
+      <div class="form-group">
+        <label for="video-upload">Video File</label>
+        <button id="video-upload" class="upload-btn" type="button" aria-label="Upload video file">Upload Video</button>
+        <p id="video-status" class="text-[var(--text-light)] mt-2"></p>
+      </div>
+      <button id="submit-movie" class="upload-btn" type="button" aria-label="Submit movie">Submit Movie</button>
+      <p class="error-message" id="error-message" aria-live="assertive"></p>
     </div>
-    <div class="form-group" id="description-group">
-      <label for="description">Description</label>
-      <textarea id="description" placeholder="Enter movie description" required aria-required="true" aria-describedby="description-error"></textarea>
-      <p class="error-message" id="description-error" aria-live="assertive"></p>
+
+    <div class="movie-table-container">
+      <h2 class="text-[var(--netflix-gold)] text-xl font-bold mb-4">Uploaded Movies</h2>
+      <div id="loading" class="hidden">
+        <div class="spinner-container">
+          <div class="spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+          </div>
+          <p class="spinner-text">Loading movies...</p>
+        </div>
+      </div>
+      <table id="movie-table" class="movie-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Cover</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="movie-table-body"></tbody>
+      </table>
     </div>
-    <div class="form-group" id="genre-group">
-      <label for="genre">Genre</label>
-      <select id="genre" required aria-required="true" aria-describedby="genre-error">
-        <option value="" disabled selected>Select genre</option>
-        <option value="action">Action</option>
-        <option value="comedy">Comedy</option>
-        <option value="drama">Drama</option>
-        <option value="horror">Horror</option>
-        <option value="sci-fi">Sci-Fi</option>
-        <option value="romance">Romance</option>
-        <option value="documentary">Documentary</option>
-      </select>
-      <p class="error-message" id="genre-error" aria-live="assertive"></p>
-    </div>
-    <div class="form-group" id="cover-group">
-      <label for="cover-upload">Cover Image</label>
-      <button type="button" id="cover-upload" class="upload-btn" aria-label="Upload cover image">Upload Cover Image</button>
-      <p id="cover-url" class="text-[var(--text-light)] text-sm mt-1" aria-live="polite"></p>
-      <p class="error-message" id="cover-error" aria-live="assertive"></p>
-    </div>
-    <div class="form-group" id="video-group">
-      <label for="video-upload">Movie Video</label>
-      <button type="button" id="video-upload" class="upload-btn" aria-label="Upload movie video">Upload Movie Video</button>
-      <p id="video-url" class="text-[var(--text-light)] text-sm mt-1" aria-live="polite"></p>
-      <p class="error-message" id="video-error" aria-live="assertive"></p>
-    </div>
-    <button class="submit-btn" type="button" aria-label="Upload movie">Upload Movie</button>
-    <p class="error-message" id="error-message" aria-live="assertive"></p>
-    <p class="success-message" id="success-message" aria-live="assertive"></p>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+    import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBOyZ3As4GTuNvjemvPF_SpsC6m6vqtNhc",
@@ -344,86 +386,66 @@
     const genreSelect = document.getElementById("genre");
     const coverUploadBtn = document.getElementById("cover-upload");
     const videoUploadBtn = document.getElementById("video-upload");
-    const coverUrlDisplay = document.getElementById("cover-url");
-    const videoUrlDisplay = document.getElementById("video-url");
-    const submitBtn = document.querySelector(".submit-btn");
+    const submitBtn = document.getElementById("submit-movie");
     const errorMessage = document.getElementById("error-message");
-    const successMessage = document.getElementById("success-message");
-    const titleGroup = document.getElementById("title-group");
-    const descriptionGroup = document.getElementById("description-group");
-    const genreGroup = document.getElementById("genre-group");
-    const coverGroup = document.getElementById("cover-group");
-    const videoGroup = document.getElementById("video-group");
+    const coverStatus = document.getElementById("cover-status");
+    const videoStatus = document.getElementById("video-status");
+    const movieTableBody = document.getElementById("movie-table-body");
+    const loading = document.getElementById("loading");
+    const logoutButton = document.getElementById("logout");
 
     let coverUrl = "";
     let videoUrl = "";
 
-    function showError(element, message, group) {
-      if (element) {
-        element.textContent = message;
-        element.classList.add("show");
-        if (group) {
-          group.classList.add("error");
-        }
-      }
-    }
-
-    function showSuccess(message) {
-      if (successMessage) {
-        successMessage.textContent = message;
-        successMessage.classList.add("show");
-        setTimeout(() => {
-          successMessage.classList.remove("show");
-          successMessage.textContent = "";
-        }, 3000);
+    function showError(message) {
+      if (errorMessage) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
       }
     }
 
     function clearError() {
-      [errorMessage, document.getElementById("title-error"), document.getElementById("description-error"), 
-       document.getElementById("genre-error"), document.getElementById("cover-error"), document.getElementById("video-error")]
-        .forEach(element => {
-          if (element) {
-            element.textContent = "";
-            element.classList.remove("show");
-          }
-        });
-      [titleGroup, descriptionGroup, genreGroup, coverGroup, videoGroup].forEach(group => {
-        if (group) {
-          group.classList.remove("error");
-        }
-      });
+      if (errorMessage) {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
     }
 
-    // Cloudinary Upload Widget
+    // Cloudinary upload widget
     const cloudinaryWidget = cloudinary.createUploadWidget(
       {
-        cloudName: "your-cloud-name", // Replace with your Cloudinary cloud name
-        uploadPreset: "your-upload-preset", // Replace with your Cloudinary upload preset
-        sources: ["local"],
-        multiple: false,
+        cloudName: "your_cloud_name", // Replace with your Cloudinary cloud name
+        uploadPreset: "rareplay_upload", // Replace with your unsigned upload preset
+        folder: "rareplay",
         resourceType: "auto",
-        clientAllowedFormats: ["jpg", "png", "mp4", "mov"],
+        clientAllowedFormats: ["jpg", "png", "mp4"],
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
           if (result.info.resource_type === "image") {
             coverUrl = result.info.secure_url;
-            coverUrlDisplay.textContent = "Cover image uploaded successfully!";
-            clearError();
+            coverStatus.textContent = "Cover image uploaded successfully!";
           } else if (result.info.resource_type === "video") {
             videoUrl = result.info.secure_url;
-            videoUrlDisplay.textContent = "Video uploaded successfully!";
-            clearError();
+            videoStatus.textContent = "Video uploaded successfully!";
           }
         } else if (error) {
-          console.error("Cloudinary upload error:", error);
-          showError(errorMessage, "Failed to upload file. Please try again.");
+          showError("Upload failed. Please try again.");
         }
       }
     );
 
-    async function handleMovieUpload() {
+    coverUploadBtn.addEventListener("click", () => {
+      cloudinaryWidget.open();
+      cloudinaryWidget.update({ resourceType: "image" });
+    });
+
+    videoUploadBtn.addEventListener("click", () => {
+      cloudinaryWidget.open();
+      cloudinaryWidget.update({ resourceType: "video" });
+    });
+
+    async function handleSubmit() {
       const title = titleInput?.value.trim();
       const description = descriptionInput?.value.trim();
       const genre = genreSelect?.value;
@@ -431,67 +453,100 @@
       clearError();
 
       if (!title || !description || !genre || !coverUrl || !videoUrl) {
-        if (!title) showError(document.getElementById("title-error"), "Please enter a movie title.", titleGroup);
-        if (!description) showError(document.getElementById("description-error"), "Please enter a description.", descriptionGroup);
-        if (!genre) showError(document.getElementById("genre-error"), "Please select a genre.", genreGroup);
-        if (!coverUrl) showError(document.getElementById("cover-error"), "Please upload a cover image.", coverGroup);
-        if (!videoUrl) showError(document.getElementById("video-error"), "Please upload a movie video.", videoGroup);
+        showError("Please fill in all fields and upload both cover image and video.");
         return;
       }
 
       try {
         submitBtn.disabled = true;
         submitBtn.textContent = "Uploading...";
-        await push(ref(db, "movies"), {
+        const movieRef = push(ref(db, "movies"));
+        await set(movieRef, {
           title,
           description,
           genre,
           poster: coverUrl,
           videoUrl,
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
         });
-        showSuccess("Movie uploaded successfully!");
-        // Reset form
         titleInput.value = "";
         descriptionInput.value = "";
         genreSelect.value = "";
         coverUrl = "";
         videoUrl = "";
-        coverUrlDisplay.textContent = "";
-        videoUrlDisplay.textContent = "";
+        coverStatus.textContent = "";
+        videoStatus.textContent = "";
       } catch (error) {
         console.error("Error uploading movie:", error);
-        showError(errorMessage, "Failed to upload movie. Please try again.");
+        showError("Failed to upload movie. Please try again.");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Upload Movie";
+        submitBtn.textContent = "Submit Movie";
       }
     }
 
+    async function deleteMovie(movieId) {
+      try {
+        await remove(ref(db, `movies/${movieId}`));
+      } catch (error) {
+        console.error("Error deleting movie:", error);
+        showError("Failed to delete movie. Please try again.");
+      }
+    }
+
+    function renderMovies(movies) {
+      if (!movieTableBody) return;
+      movieTableBody.innerHTML = "";
+      movies.forEach(movie => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${movie.title}</td>
+          <td class="capitalize">${movie.genre}</td>
+          <td><img src="${movie.poster || 'https://via.placeholder.com/100?text=No+Image'}" alt="${movie.title}"></td>
+          <td><button class="delete-btn" data-id="${movie.id}">Delete</button></td>
+        `;
+        movieTableBody.appendChild(row);
+      });
+
+      document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const movieId = btn.dataset.id;
+          if (confirm("Are you sure you want to delete this movie?")) {
+            deleteMovie(movieId);
+          }
+        });
+      });
+    }
+
+    function fetchMovies() {
+      if (loading) loading.classList.remove("hidden");
+      onValue(ref(db, "movies"), snapshot => {
+        const movies = [];
+        snapshot.forEach(child => {
+          movies.push({ id: child.key, ...child.val() });
+        });
+        renderMovies(movies);
+        if (loading) loading.classList.add("hidden");
+      }, error => {
+        console.error("Error fetching movies:", error);
+        if (loading) loading.classList.add("hidden");
+        showError("Failed to load movies. Please try again.");
+      });
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-      // Check authentication state and admin role
-      onAuthStateChanged(auth, async user => {
+      onAuthStateChanged(auth, user => {
         if (!user) {
           window.location.href = "signup.html";
           return;
         }
-        // Check if user is admin (assuming admin role is stored in Firebase database)
-        try {
-          const userRef = ref(db, `users/${user.uid}`);
-          const snapshot = await get(userRef);
-          const userData = snapshot.val();
-          if (!userData || userData.role !== "admin") {
-            window.location.href = "signup.html";
-            return;
-          }
-        } catch (error) {
-          console.error("Error checking admin status:", error);
-          window.location.href = "signup.html";
-        }
+        fetchMovies();
       });
 
-      // Logout functionality
-      const logoutButton = document.getElementById("logout");
+      if (submitBtn) {
+        submitBtn.addEventListener("click", handleSubmit);
+      }
+
       if (logoutButton) {
         logoutButton.addEventListener("click", async e => {
           e.preventDefault();
@@ -504,24 +559,6 @@
         });
       }
 
-      // Cloudinary upload buttons
-      if (coverUploadBtn) {
-        coverUploadBtn.addEventListener("click", () => {
-          cloudinaryWidget.open();
-        });
-      }
-      if (videoUploadBtn) {
-        videoUploadBtn.addEventListener("click", () => {
-          cloudinaryWidget.open();
-        });
-      }
-
-      // Form submission
-      if (submitBtn) {
-        submitBtn.addEventListener("click", handleMovieUpload);
-      }
-
-      // Clear errors on input
       [titleInput, descriptionInput, genreSelect].forEach(input => {
         if (input) {
           input.addEventListener("input", clearError);
