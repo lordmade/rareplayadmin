@@ -2,35 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RAREPLAY - Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>RAREPLAY - Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
   <style>
     :root {
-      --netflix-red: #E50914;
       --netflix-gold: #FFD700;
-      --background-dark: #141414;
-      --text-dark: #FFFFFF;
-      --text-light: #B3B3B3;
-      --border-dark: #2F2F2F;
+      --background-light: #FFFFFF;
+      --text-dark: #000000;
+      --text-light: #4B4B4B;
+      --border-light: #D1D1D1;
       --white-light: #F5F5F5;
       --error-red: #FF0000;
     }
 
+    [data-theme="light"] {
+      --background: var(--background-light);
+      --text-dark: var(--text-dark);
+      --text-light: var(--text-light);
+      --border: var(--border-light);
+      --white: var(--white-light);
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background: var(--background-dark);
-      color: var(--text-dark);
+      background: linear-gradient(180deg, var(--background-light) 0%, #E5E5E5 100%);
       min-height: 100vh;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
+      color: var(--text-dark);
       user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none;
     }
 
     .navbar {
@@ -42,18 +50,17 @@
       padding: 1rem 2rem;
     }
 
-    .dashboard-container {
-      background: rgba(20, 20, 20, 0.95);
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 1rem;
       padding: 2rem;
       width: 100%;
-      max-width: 600px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
-      margin-top: 6rem;
     }
 
-    .dashboard-container h1 {
+    .form-container h1 {
       color: var(--netflix-gold);
       font-size: 2rem;
       font-weight: 700;
@@ -74,104 +81,36 @@
       margin-bottom: 0.5rem;
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group input {
       width: 100%;
       padding: 0.75rem;
       background: var(--white-light);
-      border: 1px solid var(--border-dark);
+      border: 1px solid var(--border-light);
       border-radius: 0.5rem;
       color: var(--text-dark);
       font-size: 1rem;
       transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
+    .form-group input:focus {
       outline: none;
       border-color: var(--netflix-gold);
       box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
     }
 
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
+    .form-group input::placeholder {
       color: var(--text-light);
       opacity: 0.7;
     }
 
-    .form-group select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B3B3B3' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.75rem center;
-      background-size: 12px;
-      cursor: pointer;
-    }
-
-    .form-group select:hover {
+    .form-group input:hover {
       background-color: var(--netflix-gold);
       color: var(--text-dark);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
     }
 
-    .form-group select:focus {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
-    }
-
-    .form-group select:invalid {
-      color: var(--text-light);
-    }
-
-    .form-group select option {
-      color: var(--text-dark);
-      background: var(--white-light);
-    }
-
-    .form-group select option[disabled] {
-      color: var(--text-light);
-    }
-
-    .form-group select option:hover {
-      background: var(--netflix-gold);
-      color: var(--text-dark);
-    }
-
-    .form-group.error input,
-    .form-group.error select,
-    .form-group.error textarea {
+    .form-group.error input {
       border-color: var(--error-red);
       box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
-    }
-
-    .upload-btn {
-      background: var(--netflix-gold);
-      color: black;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin: 0.5rem;
-      display: inline-block;
-    }
-
-    .upload-btn:hover {
-      background: #d4b000;
-      transform: translateY(-1px);
-    }
-
-    .upload-btn:active {
-      transform: translateY(0);
     }
 
     .submit-btn {
@@ -198,7 +137,7 @@
     .error-message {
       color: var(--error-red);
       font-size: 0.9rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       display: none;
       text-align: center;
     }
@@ -207,16 +146,20 @@
       display: block;
     }
 
-    .success-message {
-      color: var(--netflix-gold);
+    .link-text {
+      color: var(--text-light);
       font-size: 0.9rem;
-      margin-top: 0.5rem;
-      display: none;
-      text-align: center;
+      margin-top: 1rem;
     }
 
-    .success-message.show {
-      display: block;
+    .link-text a {
+      color: var(--netflix-gold);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .link-text a:hover {
+      color: #d4b000;
     }
 
     .noscript-message {
@@ -227,102 +170,72 @@
     }
 
     @media (max-width: 640px) {
-      .dashboard-container {
+      .form-container {
         padding: 1.5rem;
         margin: 1rem;
       }
 
-      .dashboard-container h1 {
+      .form-container h1 {
         font-size: 1.5rem;
       }
 
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
+      .form-group input {
         padding: 0.6rem;
         font-size: 0.9rem;
       }
 
-      .upload-btn,
       .submit-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
       }
 
       .error-message,
-      .success-message {
+      .link-text {
         font-size: 0.8rem;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      body, .upload-btn, .submit-btn, .form-group input, .form-group select, .form-group textarea {
+      body, .submit-btn, .form-group input {
         transition: none;
       }
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <noscript>
     <div class="noscript-message">
-      JavaScript is disabled. Please enable JavaScript to use the RAREPLAY Admin Dashboard or visit our <a href="https://help.rareplay.com" class="underline">help page</a> for more information.
+      JavaScript is disabled. Please enable JavaScript to use RAREPLAY or visit our <a href="https://help.rareplay.com" class="underline">help page</a> for more information.
     </div>
   </noscript>
   <nav class="navbar">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-[var(--netflix-gold)]">RAREPLAY Admin</h1>
+      <h1 class="text-2xl font-bold text-[var(--netflix-gold)]">RAREPLAY</h1>
       <div class="flex items-center space-x-4">
-        <a href="#" id="logout" class="text-[var(--text-light)] hover:text-[var(--netflix-gold)] font-medium">Logout</a>
+        <a href="signup.html" class="text-[var(--text-light)] hover:text-[var(--netflix-gold)] font-medium">Sign Up</a>
       </div>
     </div>
   </nav>
-  <div class="dashboard-container" role="form" aria-labelledby="dashboard-title">
-    <h1 id="dashboard-title">Upload New Movie</h1>
-    <div class="form-group" id="title-group">
-      <label for="title">Movie Title</label>
-      <input type="text" id="title" placeholder="Enter movie title" required aria-required="true" aria-describedby="title-error" />
-      <p class="error-message" id="title-error" aria-live="assertive"></p>
+  <div class="form-container" role="form" aria-labelledby="login-title">
+    <h1 id="login-title">Login to RAREPLAY</h1>
+    <div class="form-group" id="email-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your email address" required aria-required="true" aria-describedby="email-error" />
+      <p class="error-message" id="email-error" aria-live="assertive"></p>
     </div>
-    <div class="form-group" id="description-group">
-      <label for="description">Description</label>
-      <textarea id="description" placeholder="Enter movie description" required aria-required="true" aria-describedby="description-error"></textarea>
-      <p class="error-message" id="description-error" aria-live="assertive"></p>
+    <div class="form-group" id="password-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required aria-required="true" aria-describedby="password-error" />
+      <p class="error-message" id="password-error" aria-live="assertive"></p>
     </div>
-    <div class="form-group" id="genre-group">
-      <label for="genre">Genre</label>
-      <select id="genre" required aria-required="true" aria-describedby="genre-error">
-        <option value="" disabled selected>Select genre</option>
-        <option value="action">Action</option>
-        <option value="comedy">Comedy</option>
-        <option value="drama">Drama</option>
-        <option value="horror">Horror</option>
-        <option value="sci-fi">Sci-Fi</option>
-        <option value="romance">Romance</option>
-        <option value="documentary">Documentary</option>
-      </select>
-      <p class="error-message" id="genre-error" aria-live="assertive"></p>
-    </div>
-    <div class="form-group" id="cover-group">
-      <label for="cover-upload">Cover Image</label>
-      <button type="button" id="cover-upload" class="upload-btn" aria-label="Upload cover image">Upload Cover Image</button>
-      <p id="cover-url" class="text-[var(--text-light)] text-sm mt-1" aria-live="polite"></p>
-      <p class="error-message" id="cover-error" aria-live="assertive"></p>
-    </div>
-    <div class="form-group" id="video-group">
-      <label for="video-upload">Movie Video</label>
-      <button type="button" id="video-upload" class="upload-btn" aria-label="Upload movie video">Upload Movie Video</button>
-      <p id="video-url" class="text-[var(--text-light)] text-sm mt-1" aria-live="polite"></p>
-      <p class="error-message" id="video-error" aria-live="assertive"></p>
-    </div>
-    <button class="submit-btn" type="button" aria-label="Upload movie">Upload Movie</button>
+    <button class="submit-btn" type="button" aria-label="Login">Login</button>
     <p class="error-message" id="error-message" aria-live="assertive"></p>
-    <p class="success-message" id="success-message" aria-live="assertive"></p>
+    <p class="link-text">Don't have an account? <a href="signup.html">Sign up here</a></p>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBOyZ3As4GTuNvjemvPF_SpsC6m6vqtNhc",
@@ -337,26 +250,15 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const db = getDatabase(app);
 
-    const titleInput = document.getElementById("title");
-    const descriptionInput = document.getElementById("description");
-    const genreSelect = document.getElementById("genre");
-    const coverUploadBtn = document.getElementById("cover-upload");
-    const videoUploadBtn = document.getElementById("video-upload");
-    const coverUrlDisplay = document.getElementById("cover-url");
-    const videoUrlDisplay = document.getElementById("video-url");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
     const submitBtn = document.querySelector(".submit-btn");
     const errorMessage = document.getElementById("error-message");
-    const successMessage = document.getElementById("success-message");
-    const titleGroup = document.getElementById("title-group");
-    const descriptionGroup = document.getElementById("description-group");
-    const genreGroup = document.getElementById("genre-group");
-    const coverGroup = document.getElementById("cover-group");
-    const videoGroup = document.getElementById("video-group");
-
-    let coverUrl = "";
-    let videoUrl = "";
+    const emailError = document.getElementById("email-error");
+    const passwordError = document.getElementById("password-error");
+    const emailGroup = document.getElementById("email-group");
+    const passwordGroup = document.getElementById("password-group");
 
     function showError(element, message, group) {
       if (element) {
@@ -368,164 +270,80 @@
       }
     }
 
-    function showSuccess(message) {
-      if (successMessage) {
-        successMessage.textContent = message;
-        successMessage.classList.add("show");
-        setTimeout(() => {
-          successMessage.classList.remove("show");
-          successMessage.textContent = "";
-        }, 3000);
-      }
-    }
-
     function clearError() {
-      [errorMessage, document.getElementById("title-error"), document.getElementById("description-error"), 
-       document.getElementById("genre-error"), document.getElementById("cover-error"), document.getElementById("video-error")]
-        .forEach(element => {
-          if (element) {
-            element.textContent = "";
-            element.classList.remove("show");
-          }
-        });
-      [titleGroup, descriptionGroup, genreGroup, coverGroup, videoGroup].forEach(group => {
-        if (group) {
-          group.classList.remove("error");
-        }
-      });
+      if (errorMessage) {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
+      if (emailError) {
+        emailError.textContent = "";
+        emailError.classList.remove("show");
+        emailGroup.classList.remove("error");
+      }
+      if (passwordError) {
+        passwordError.textContent = "";
+        passwordError.classList.remove("show");
+        passwordGroup.classList.remove("error");
+      }
     }
 
-    // Cloudinary Upload Widget
-    const cloudinaryWidget = cloudinary.createUploadWidget(
-      {
-        cloudName: "your-cloud-name", // Replace with your Cloudinary cloud name
-        uploadPreset: "your-upload-preset", // Replace with your Cloudinary upload preset
-        sources: ["local"],
-        multiple: false,
-        resourceType: "auto",
-        clientAllowedFormats: ["jpg", "png", "mp4", "mov"],
-      },
-      (error, result) => {
-        if (!error && result && result.event === "success") {
-          if (result.info.resource_type === "image") {
-            coverUrl = result.info.secure_url;
-            coverUrlDisplay.textContent = "Cover image uploaded successfully!";
-            clearError();
-          } else if (result.info.resource_type === "video") {
-            videoUrl = result.info.secure_url;
-            videoUrlDisplay.textContent = "Video uploaded successfully!";
-            clearError();
-          }
-        } else if (error) {
-          console.error("Cloudinary upload error:", error);
-          showError(errorMessage, "Failed to upload file. Please try again.");
-        }
-      }
-    );
-
-    async function handleMovieUpload() {
-      const title = titleInput?.value.trim();
-      const description = descriptionInput?.value.trim();
-      const genre = genreSelect?.value;
+    async function handleLogin() {
+      const email = emailInput?.value.trim();
+      const password = passwordInput?.value.trim();
 
       clearError();
 
-      if (!title || !description || !genre || !coverUrl || !videoUrl) {
-        if (!title) showError(document.getElementById("title-error"), "Please enter a movie title.", titleGroup);
-        if (!description) showError(document.getElementById("description-error"), "Please enter a description.", descriptionGroup);
-        if (!genre) showError(document.getElementById("genre-error"), "Please select a genre.", genreGroup);
-        if (!coverUrl) showError(document.getElementById("cover-error"), "Please upload a cover image.", coverGroup);
-        if (!videoUrl) showError(document.getElementById("video-error"), "Please upload a movie video.", videoGroup);
+      if (!email || !password) {
+        if (!email) showError(emailError, "Please enter your email.", emailGroup);
+        if (!password) showError(passwordError, "Please enter your password.", passwordGroup);
         return;
       }
 
       try {
         submitBtn.disabled = true;
-        submitBtn.textContent = "Uploading...";
-        await push(ref(db, "movies"), {
-          title,
-          description,
-          genre,
-          poster: coverUrl,
-          videoUrl,
-          createdAt: new Date().toISOString()
-        });
-        showSuccess("Movie uploaded successfully!");
-        // Reset form
-        titleInput.value = "";
-        descriptionInput.value = "";
-        genreSelect.value = "";
-        coverUrl = "";
-        videoUrl = "";
-        coverUrlDisplay.textContent = "";
-        videoUrlDisplay.textContent = "";
+        submitBtn.textContent = "Logging In...";
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "home.html";
       } catch (error) {
-        console.error("Error uploading movie:", error);
-        showError(errorMessage, "Failed to upload movie. Please try again.");
+        console.error("Login error:", error);
+        let errorMsg = "An error occurred. Please try again.";
+        switch (error.code) {
+          case "auth/user-not-found":
+          case "auth/wrong-password":
+            errorMsg = "Invalid email or password.";
+            break;
+          case "auth/invalid-email":
+            errorMsg = "Invalid email address.";
+            break;
+          case "auth/too-many-requests":
+            errorMsg = "Too many attempts. Please try again later.";
+            break;
+          case "auth/network-request-failed":
+            errorMsg = "Network error. Please check your connection.";
+            break;
+        }
+        showError(errorMessage, errorMsg);
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Upload Movie";
+        submitBtn.textContent = "Login";
       }
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Check authentication state and admin role
-      onAuthStateChanged(auth, async user => {
-        if (!user) {
-          window.location.href = "signup.html";
-          return;
-        }
-        // Check if user is admin (assuming admin role is stored in Firebase database)
-        try {
-          const userRef = ref(db, `users/${user.uid}`);
-          const snapshot = await get(userRef);
-          const userData = snapshot.val();
-          if (!userData || userData.role !== "admin") {
-            window.location.href = "signup.html";
-            return;
-          }
-        } catch (error) {
-          console.error("Error checking admin status:", error);
-          window.location.href = "signup.html";
-        }
-      });
-
-      // Logout functionality
-      const logoutButton = document.getElementById("logout");
-      if (logoutButton) {
-        logoutButton.addEventListener("click", async e => {
-          e.preventDefault();
-          try {
-            await signOut(auth);
-            window.location.href = "signup.html";
-          } catch (error) {
-            console.error("Error signing out:", error);
-          }
-        });
-      }
-
-      // Cloudinary upload buttons
-      if (coverUploadBtn) {
-        coverUploadBtn.addEventListener("click", () => {
-          cloudinaryWidget.open();
-        });
-      }
-      if (videoUploadBtn) {
-        videoUploadBtn.addEventListener("click", () => {
-          cloudinaryWidget.open();
-        });
-      }
-
-      // Form submission
       if (submitBtn) {
-        submitBtn.addEventListener("click", handleMovieUpload);
+        submitBtn.addEventListener("click", handleLogin);
       }
 
-      // Clear errors on input
-      [titleInput, descriptionInput, genreSelect].forEach(input => {
+      [emailInput, passwordInput].forEach(input => {
         if (input) {
           input.addEventListener("input", clearError);
           input.addEventListener("change", clearError);
+          input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleLogin();
+            }
+          });
         }
       });
     });
