@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>RAREPLAY - Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --netflix-gold: #FFD700;
+      --background-light: #FFFFFF;
+      --text-dark: #000000;
+      --text-light: #4B4B4B;
+      --border-light: #D1D1D1;
+      --white-light: #F5F5F5;
+      --error-red: #FF0000;
+    }
+
+    [data-theme="light"] {
+      --background: var(--background-light);
+      --text-dark: var(--text-dark);
+      --text-light: var(--text-light);
+      --border: var(--border-light);
+      --white: var(--white-light);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(180deg, var(--background-light) 0%, #E5E5E5 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-dark);
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    .navbar {
+      background: transparent;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 1rem 2rem;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .form-container h1 {
+      color: var(--netflix-gold);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .form-group label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--white-light);
+      border: 1px solid var(--border-light);
+      border-radius: 0.5rem;
+      color: var(--text-dark);
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--netflix-gold);
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-light);
+      opacity: 0.7;
+    }
+
+    .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234B4B4B' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+
+    .form-group select:hover {
+      background-color: var(--netflix-gold);
+      color: var(--text-dark);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    }
+
+    .form-group select:focus {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFD700' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    }
+
+    .form-group select:invalid {
+      color: var(--text-light);
+    }
+
+    .form-group select option {
+      color: var(--text-dark);
+      background: var(--white-light);
+    }
+
+    .form-group select option[disabled] {
+      color: var(--text-light);
+    }
+
+    .form-group select option:hover {
+      background: var(--netflix-gold);
+      color: var(--text-dark);
+    }
+
+    .form-group.error select {
+      border-color: var(--error-red);
+      box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+    }
+
+    .submit-btn {
+      background: var(--netflix-gold);
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background: #d4b000;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .error-message {
+      color: var(--error-red);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      display: none;
+      text-align: center;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .link-text {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .link-text a {
+      color: var(--netflix-gold);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .link-text a:hover {
+      color: #d4b000;
+    }
+
+    .noscript-message {
+      color: var(--text-light);
+      font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+
+      .form-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      .submit-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .error-message,
+      .link-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body, .submit-btn, .form-group input, .form-group select {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <noscript>
+    <div class="noscript-message">
+      JavaScript is disabled. Please enable JavaScript to use RAREPLAY or visit our <a href="https://help.rareplay.com" class="underline">help page</a> for more information.
+    </div>
+  </noscript>
+  <nav class="navbar">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-[var(--netflix-gold)]">RAREPLAY</h1>
+      <div class="flex items-center space-x-4">
+        <a href="login.html" class="text-[var(--text-light)] hover:text-[var(--netflix-gold)] font-medium">Login</a>
+      </div>
+    </div>
+  </nav>
+  <div class="form-container" role="form" aria-labelledby="signup-title">
+    <h1 id="signup-title">Sign Up for RAREPLAY</h1>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your email address" required aria-required="true" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Create a password" required aria-required="true" />
+    </div>
+    <div class="form-group" id="plan-group">
+      <label for="plan">Subscription Plan</label>
+      <select id="plan" required aria-required="true" aria-describedby="plan-error">
+        <option value="" disabled selected>Choose your plan</option>
+        <option value="basic">Basic (R45/month)</option>
+        <option value="premium">Premium (R75/month)</option>
+      </select>
+      <p class="error-message" id="plan-error" aria-live="assertive"></p>
+    </div>
+    <button class="submit-btn" type="button" aria-label="Sign up">Sign Up</button>
+    <p class="error-message" id="error-message" aria-live="assertive"></p>
+    <p class="link-text">Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBOyZ3As4GTuNvjemvPF_SpsC6m6vqtNhc",
+      authDomain: "fire-b-a8878.firebaseapp.com",
+      databaseURL: "https://fire-b-a8878.firebaseio.com",
+      projectId: "fire-b-a8878",
+      storageBucket: "fire-b-a8878.firebasestorage.app",
+      messagingSenderId: "658673187627",
+      appId: "1:658673187627:web:6e4c29af661785f0afa36e",
+      measurementId: "G-V4W97VMSKL"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const planSelect = document.getElementById("plan");
+    const submitBtn = document.querySelector(".submit-btn");
+    const errorMessage = document.getElementById("error-message");
+    const planError = document.getElementById("plan-error");
+    const planGroup = document.getElementById("plan-group");
+
+    function showError(element, message) {
+      if (element) {
+        element.textContent = message;
+        element.classList.add("show");
+        if (element.id === "plan-error") {
+          planGroup.classList.add("error");
+        }
+      }
+    }
+
+    function clearError() {
+      if (errorMessage) {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
+      if (planError) {
+        planError.textContent = "";
+        planError.classList.remove("show");
+        planGroup.classList.remove("error");
+      }
+    }
+
+    async function handleSignup() {
+      const email = emailInput?.value.trim();
+      const password = passwordInput?.value.trim();
+      const plan = planSelect?.value;
+
+      clearError();
+
+      if (!email || !password || !plan) {
+        if (!email) showError(errorMessage, "Please enter your email.");
+        if (!password) showError(errorMessage, "Please enter your password.");
+        if (!plan) showError(planError, "Please select a subscription plan.");
+        return;
+      }
+
+      if (password.length < 6) {
+        showError(errorMessage, "Password must be at least 6 characters.");
+        return;
+      }
+
+      try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Signing Up...";
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await set(ref(db, `users/${user.uid}`), {
+          email: email,
+          plan: plan,
+          subscriptionStart: new Date().toISOString(),
+          currency: "ZAR",
+          planPrice: plan === "basic" ? 45 : 75
+        });
+
+        window.location.href = "home.html";
+      } catch (error) {
+        console.error("Signup error:", error);
+        let errorMsg = "An error occurred. Please try again.";
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMsg = "Email is already in use.";
+            break;
+          case "auth/invalid-email":
+            errorMsg = "Invalid email address.";
+            break;
+          case "auth/weak-password":
+            errorMsg = "Password is too weak.";
+            break;
+          case "auth/network-request-failed":
+            errorMsg = "Network error. Please check your connection.";
+            break;
+        }
+        showError(errorMessage, errorMsg);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Sign Up";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (submitBtn) {
+        submitBtn.addEventListener("click", handleSignup);
+      }
+
+      [emailInput, passwordInput, planSelect].forEach(input => {
+        if (input) {
+          input.addEventListener("input", clearError);
+          input.addEventListener("change", clearError);
+        }
+      });
+
+      planSelect.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          planSelect.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
